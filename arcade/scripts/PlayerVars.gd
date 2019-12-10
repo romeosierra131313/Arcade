@@ -6,6 +6,7 @@ var location = Vector2(0,0)
 var difficulty = 1
 var accel = 0 
 var health = 5
+var lives = 3
 func _ready():
 	pass # Replace with function body.
 

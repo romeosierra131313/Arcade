@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/enemy/EnemyBoss2.gd" type="Script" id=1]
+[ext_resource path="res://Textures/boss1.png" type="Texture" id=2]
+[ext_resource path="res://scenes/enemy/Boss2Turret.tscn" type="PackedScene" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 80.0
+
+[node name="Boss2" type="Area2D"]
+scale = Vector2( 1, 2 )
+collision_layer = 2
+script = ExtResource( 1 )
+timer = 0.05
+burstTime = 2.0
+breakTime = 1.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="boss1" type="Sprite" parent="."]
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 2 )
+
+[node name="Boss2Turret" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0.9025, -75.81 )
+scale = Vector2( 0.5, 0.25 )
+timer = 0.0
+burstTime = 5.0
+breakTime = 0.5
+
+[node name="Boss2Turret2" parent="." instance=ExtResource( 3 )]
+position = Vector2( -0.902, 76.713 )
+scale = Vector2( 0.5, 0.25 )
+timer = 0.0
+burstTime = 3.0
+breakTime = 0.5
+[connection signal="area_entered" from="." to="." method="_on_Area2D_area_entered"]
