@@ -3,6 +3,11 @@ extends KinematicBody2D
 
 
 onready var bullet = load("res://scenes/Bullet.tscn")
+onready var rocket = load("res://scenes/rocket.tscn")
+onready var laser = load("res://scenes/Laser.tscn")
+
+var rocketTimer = 0.0
+var laserTimer = 0.0
 var speedX = 50
 var speedY = 250
 var time = 0.0
@@ -44,8 +49,8 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	time += delta
-	
-	
+	rocketTimer +=delta
+	laserTimer +=delta
 
 	if Input.is_action_pressed("ui_down"):
 		velocity.y = speedY
@@ -72,6 +77,33 @@ func _process(delta):
 			b.gradiant =(randf() - randf())/bulletAccuracy
 			get_parent().add_child(b)
 			time = 0
+	if Input.is_action_pressed("button_2"):	
+		if rocketTimer > 1:
+			var r  = rocket.instance()
+			r.setPos(Vector2(position.x + 11,position.y ))
+			r.setVelocity(Vector2(6,0))
+			r.dirY = 1
+			r.gradiant =(randf() - randf())/bulletAccuracy
+			get_parent().add_child(r)
+			
+			var r1  = rocket.instance()
+			r1.setPos(Vector2(position.x + 11,position.y ))
+			r1.setVelocity(Vector2(6,0))
+			r1.dirY = -1
+			r1.gradiant =(randf() - randf())/bulletAccuracy
+			get_parent().add_child(r1)
+			rocketTimer = 0	
+			
+	if Input.is_action_pressed("button_3"):	
+		if laserTimer > 1:		
+			var l  = laser.instance()
+			l.scale.y = 0.5
+			l.setPos(Vector2(11,0))
+			l.rotation_degrees = 180
+			add_child(l)
+			
+			
+			laserTimer = 0		
 		
 	Player.location = position	
 	if fallingBack:

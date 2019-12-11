@@ -3,32 +3,26 @@ extends Area2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-onready var bullet = load("res://scenes/Bullet.tscn")
+onready var bullet = load("res://scenes/BulletPong.tscn")
 var time = 0.0
 export var timer = 0.01 ### time between bullets
 var burstTimer = 0.0 ### length of bursts
 var breakTimer = 0.0 ### time between bursts
 export var burstTime = 0.0 ### length of bursts
 export var breakTime = 0.0 ### time between bursts
-var health = 7
-var speedX = 2
-var speedY = 4
-var dirY = -1
-signal eadied
+var health = 3
+var speedX = 1
+signal espbdied
 # Called when the node enters the scene tree for the first time.
+
 func _ready():
-	connect("eadied",get_parent().get_node("HUD"),"eaDied")
-	var y = randi()%630
-	if y < 300:
-		dirY = 1
-	else:
-		dirY = -1
-	
-	position = Vector2(1080,y)
-	burstTime += Player.difficulty
-	for i in range(0,Player.difficulty):
-		breakTime -= 0.25
+	connect("espbdied",get_parent().get_node("HUD"),"espbnemyDied")
+	position = Vector2(1080,randi()%536 + 64)
 	pass
+func setPos(e):
+	position.y = e
+	pass
+
 func _process(delta):
 	time += delta
 	burstTimer += delta
@@ -51,18 +45,20 @@ func _process(delta):
 				b.setVelocity(Vector2(-3,0))
 				b.setEnemy()
 				var g = (Player.location.y - position.y)/ (Player.location.x - position.x)
-				b.gradiant =randi()%1  * g * dirY + randf()
+				b.gradiant =randi()%4  * g *-2
 				get_parent().add_child(b)
 				time = 0
 
 			
-	position = Vector2(position.x - speedX + Player.accel,position.y  + speedY * dirY)
+	position = Vector2(position.x - speedX,position.y)
 	if position.x < 0:
 		queue_free()
 	pass
 func takeHit(e):
+	print("enemy took hit")
 	health -= e
 	if health <= 0:
+		emit_signal("espbdied")
 		queue_free()
 	pass
 
@@ -73,7 +69,7 @@ func _on_Enemy_area_entered(area):
 
 
 
-func _on_Enemy_body_entered(body):
+func _on_ESPB_body_entered(body):
 	if body.is_in_group("Player"):
 		body.health = 0
 	pass # Replace with function body.

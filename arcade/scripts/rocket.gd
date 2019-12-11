@@ -2,8 +2,13 @@ extends Area2D
 
 var gradiant = 0
 var velocity = Vector2(0,0)
-var damage = 1
-onready var explosion = load("res://scenes/bulletContact.tscn")
+var damage = 4
+var health = 3
+var speedX = 3
+var speedY = 2
+var dirY = -1
+var rangeY = 25
+var movement = 0
 
 func setPos(e):
 	position = e
@@ -23,9 +28,12 @@ func setEnemy():
 	add_to_group("Enemy")
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if movement <=  rangeY:
+		movement +=speedY
+		position.y = position.y + speedY * dirY
+
 	
-	
-	position.x += velocity.x 
+	position.x += velocity.x
 	position.y += velocity.y + gradiant
 	
 	if position.x < 0 :
@@ -39,18 +47,14 @@ func _on_VisibilityNotifier2D_screen_exited():
 	
 	pass # Replace with function body.
 
-func takeHit(e):
-	
-	pass
+
 func _on_Bullet_area_entered(area):
 	if area.is_in_group("Enemy"):
 		area.takeHit(damage)
-		area.add_child(explosion.instance())
 		queue_free()
 	pass # Replace with function body.
 
 
 func _on_Bullet_body_entered(body):
 	body.takeHit(damage)
-	body.add_child(explosion.instance())
 	pass # Replace with function body.

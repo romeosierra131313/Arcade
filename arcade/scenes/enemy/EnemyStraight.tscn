@@ -26,3 +26,4 @@ flip_h = true
 hframes = 4
 script = ExtResource( 3 )
 [connection signal="area_entered" from="." to="." method="_on_Enemy_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_EnemyStraight_body_entered"]

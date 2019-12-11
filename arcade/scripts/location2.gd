@@ -4,9 +4,11 @@ onready var player = load("res://scenes/Player.tscn")
 onready var ene = load("res://scenes/enemy/Enemy.tscn")
 onready var lr = load("res://scenes/enemy/laserRotate.tscn")
 onready var espb = load("res://scenes/enemy/EnemyStraightPongBullets.tscn")
+onready var b2 = load("res://scenes/enemy/EnemyBoss2.tscn")
 
 var time = 0.0
 var difficulty = 1
+var pointCount = 0
 var goal = 700
 var boss = false
 signal boss
@@ -18,11 +20,8 @@ var lrTime = 3.0
 export var espbTimer = 0.0
 var espbTime = 4.0
 
-export var eaTimer = 0.0
-var eaTime = 4.0
-
-export var ecTimer = 0.0
-var ecTime = 2.0
+export var eneTimer = 0.0
+var eneTime = 2.0
 
 func spawnPlayer():
 	var playerCount  = 0
@@ -52,36 +51,39 @@ func setCredit():
 
 
 func _ready():
-	add_child(player.instance())
+	
+	Player.health = 5
+	Player.lives = 3
 	Player.difficulty = difficulty
+	get_node("HUD").lifeRestored()
+	add_child(player.instance())
 	pass 
 func _process(delta):
 	time += delta
 	lrTime += delta
 	espbTime += delta
-	eaTime += delta
-	ecTime += delta
+	eneTime += delta
 	
 	
 	if lrTime > lrTimer	:
-		
 		var e = ene.instance()
 		var r = lr.instance()
 		e.add_child(r)
 		add_child(e)
 		lrTime = 0
-	if eaTime > eaTimer	:
-		eaTime = 0
-	if ecTime > ecTimer	:
-		ecTime = 0
+
 	if espbTime > espbTimer	:
 		add_child(espb.instance())
 		espbTime = 0
-		
-	if Player.location.x > goal:
+	if eneTime > eneTimer	:
+		add_child(ene.instance())
+		eneTime = 0	
+	if pointCount > goal:
 		if boss == false:
-
-			#add_child(eb1.instance())
+			eneTimer = 30
+			espbTimer = 150
+			lrTimer = 250
+			add_child(b2.instance())
 			emit_signal("boss")
 			boss = true
 	pass

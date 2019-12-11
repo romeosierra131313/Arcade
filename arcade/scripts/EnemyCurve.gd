@@ -7,7 +7,7 @@ onready var bullet = load("res://scenes/Bullet.tscn")
 var time = 0.0
 export var timer = 0.5
 var mTime = 0.0
-var mTimer = 0.2
+var mTimer = 0.1
 var health = 3
 var speedX = 10
 var speedY = 10
@@ -64,3 +64,9 @@ func _on_Enemy_area_entered(area):
 	#takeHit(area.damage)
 	pass # Replace with function body.
 
+
+
+func _on_Enemy_body_entered(body):
+	if body.is_in_group("Player"):
+		body.health = 0
+	pass # Replace with function body.

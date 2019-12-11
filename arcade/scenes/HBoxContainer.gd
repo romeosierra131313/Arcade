@@ -8,9 +8,12 @@ func _ready():
 func setTime(e):
 	time = e
 	get_node("VBoxContainer/Label").text = str(time)
-	show()
-	
+	show()	
 	return true
+	
+func setText(e):
+	get_node("VBoxContainer/Button").text = e
+	pass
 func _process(delta):
 	timer += delta
 	if timer > 1:

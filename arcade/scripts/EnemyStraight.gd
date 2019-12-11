@@ -10,8 +10,8 @@ var burstTimer = 0.0 ### length of bursts
 var breakTimer = 0.0 ### time between bursts
 export var burstTime = 0.0 ### length of bursts
 export var breakTime = 0.0 ### time between bursts
-var health = 3
-var speedX = 1
+var health = 5
+var speedX = 3
 signal esdied
 # Called when the node enters the scene tree for the first time.
 
@@ -67,3 +67,9 @@ func _on_Enemy_area_entered(area):
 	#takeHit(area.damage)
 	pass # Replace with function body.
 
+
+
+func _on_EnemyStraight_body_entered(body):
+	if body.is_in_group("Player"):
+		body.health = 0
+	pass # Replace with function body.

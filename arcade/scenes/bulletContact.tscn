@@ -1,6 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://scenes/bulletContact.gd" type="Script" id=1]
+[ext_resource path="res://scripts/bulletContact.gd" type="Script" id=1]
+
 
 [sub_resource type="ParticlesMaterial" id=1]
 emission_shape = 1
@@ -23,7 +24,8 @@ hue_variation = 0.1
 hue_variation_random = 0.3
 
 [node name="bulletContact" type="Particles2D"]
-rotation = -0.00271759
+rotation = 0.00421956
+scale = Vector2( 0.2, 0.2 )
 z_index = 2
 amount = 64
 process_material = SubResource( 1 )

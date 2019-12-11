@@ -1,15 +1,17 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://scripts/BulletPong.gd" type="Script" id=1]
-[ext_resource path="res://Textures/player/bullet_basic/plasma.png" type="Texture" id=2]
+[ext_resource path="res://scripts/rocket.gd" type="Script" id=1]
+[ext_resource path="res://Textures/player/sky_rocket.png" type="Texture" id=2]
 [ext_resource path="res://scripts/Sprite.gd" type="Script" id=3]
+
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 1.0
 
-[node name="BulletPong" type="Area2D" groups=[
+[node name="Rocket" type="Area2D" groups=[
 "Bullet",
 ]]
+scale = Vector2( 0.5, 0.5 )
 z_index = -1
 collision_layer = 2
 collision_mask = 2
@@ -21,10 +23,10 @@ shape = SubResource( 1 )
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
 
 [node name="Sprite" type="Sprite" parent="."]
+rotation = 1.5708
 z_index = -1
 texture = ExtResource( 2 )
-flip_h = true
-hframes = 2
+hframes = 4
 script = ExtResource( 3 )
 [connection signal="area_entered" from="." to="." method="_on_Bullet_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]

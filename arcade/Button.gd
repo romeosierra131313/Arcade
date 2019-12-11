@@ -5,7 +5,7 @@ extends Button
 # var b = "text"
 var pos = rect_position
 export var distance = 10
-export var speed = 0.1
+export var speed = 0.25
 export var movement = 2
 var time = 0.01
 var dir = 1

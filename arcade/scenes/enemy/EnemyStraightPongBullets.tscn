@@ -1,20 +1,21 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://scripts/EnemyStraight.gd" type="Script" id=1]
+[ext_resource path="res://scripts/EnemyStraightPongBullets.gd" type="Script" id=1]
 [ext_resource path="res://Textures/enemy/shmup_spaceship.png" type="Texture" id=2]
 [ext_resource path="res://scripts/Sprite.gd" type="Script" id=3]
+
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 30.0
 
-[node name="Enemy" type="Area2D" groups=[
+[node name="ESPB" type="Area2D" groups=[
 "Enemy",
 ]]
 collision_layer = 2
 script = ExtResource( 1 )
-timer = 0.3
-burstTime = 2.0
-breakTime = 1.0
+timer = 0.1
+burstTime = 4.0
+breakTime = 1.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -26,3 +27,4 @@ flip_h = true
 hframes = 4
 script = ExtResource( 3 )
 [connection signal="area_entered" from="." to="." method="_on_Enemy_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_ESPB_body_entered"]

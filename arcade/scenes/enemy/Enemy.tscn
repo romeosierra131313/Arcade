@@ -22,3 +22,4 @@ texture = ExtResource( 2 )
 flip_h = true
 script = ExtResource( 3 )
 [connection signal="area_entered" from="." to="." method="_on_Enemy_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_Enemy_body_entered"]

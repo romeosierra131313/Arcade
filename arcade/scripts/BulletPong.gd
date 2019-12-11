@@ -53,10 +53,14 @@ func _on_VisibilityNotifier2D_screen_exited():
 	
 	pass # Replace with function body.
 
-
+func takeHit(e):
+	
+	pass
 func _on_Bullet_area_entered(area):
 	if area.is_in_group("Enemy"):
 		area.takeHit(damage)
+		queue_free()
+	elif area.is_in_group("Player"):
 		queue_free()
 	pass # Replace with function body.
 

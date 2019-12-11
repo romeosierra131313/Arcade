@@ -8,9 +8,10 @@ onready var es = load("res://scenes/enemy/EnemyStraight.tscn")
 onready var ep = load("res://scenes/enemy/EnemyPong.tscn")
 onready var eb1 = load("res://scenes/enemy/EnemyBoss1.tscn")
 
+var pointCount = 0
 var time = 0.0
 var difficulty = 1
-var goal = 700
+var goal = 40
 var boss = false
 signal boss
 export var epTimer = 0.0
@@ -53,7 +54,11 @@ func setCredit():
 
 
 func _ready():
+	Player.health = 5
+	Player.lives = 3
 	Player.difficulty = difficulty
+	get_node("HUD").lifeRestored()
+	add_child(player.instance())
 	pass 
 func _process(delta):
 	time += delta
@@ -76,7 +81,7 @@ func _process(delta):
 		add_child(es.instance())
 		esTime = 0
 		
-	if Player.location.x > goal:
+	if Player.highScore > goal:
 		if boss == false:
 			eaTimer = 10000
 			esTimer = 10000

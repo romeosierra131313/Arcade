@@ -115,3 +115,9 @@ func _on_Enemy_area_entered(area):
 	#takeHit(area.damage)
 	pass # Replace with function body.
 
+
+
+func _on_EnemyGunRotating_body_entered(body):
+	if body.is_in_group("Player"):
+		body.health = 0
+	pass # Replace with function body.

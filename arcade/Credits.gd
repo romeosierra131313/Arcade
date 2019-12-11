@@ -1,17 +1,13 @@
 extends Node2D
 
-var damage = 1
+# Declare member variables here. Examples:
+# var a = 2
+# var b = "text"
 
+# Called when the node enters the scene tree for the first time.
 func _ready():
-	var w = randf()
-	if w > 0.5:
-		get_node("LaserR").rotateDir = 1
-	else:
-		get_node("LaserR").rotateDir = -1	
 	pass # Replace with function body.
-func takeHit(e):
-	
-	pass
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass

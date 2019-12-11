@@ -11,14 +11,16 @@ var burstTimer = 0.0 ### length of bursts
 var breakTimer = 0.0 ### time between bursts
 export var burstTime = 0.0 ### length of bursts
 export var breakTime = 0.0 ### time between bursts
-var health =30
+var health =150
 var speedX = 1
 var speedY = 1
 var dirX = 1
 var dirY = -1
+signal boss1Died
 # Called when the node enters the scene tree for the first time.
 
 func _ready():
+	connect("boss1Died",get_parent().get_node("HUD"),"boss1Died")
 	position = Vector2(1100,randi()%536 + 64)
 	pass
 func setPos(e):
@@ -30,9 +32,6 @@ func _process(delta):
 	burstTimer += delta
 	breakTimer += delta
 
-	
-	
-	
 	if breakTimer >breakTime:	
 		
 		if breakTimer > burstTime:
@@ -76,8 +75,12 @@ func _process(delta):
 	pass
 func takeHit(e):
 	health -= e
+	if health < 75:
+		burstTime = 4
+		breakTime = 0.5
+		timer = 0.2
 	if health <= 0:
-		Global.goto_scene("res://scenes/location2.tscn")
+		emit_signal("boss1Died")
 		queue_free()
 	pass
 
@@ -86,4 +89,10 @@ func takeHit(e):
 func _on_Area2D_area_entered(area):
 	add_child(explosion.instance())
 	takeHit(area.damage)
+	pass # Replace with function body.
+
+
+func _on_Area2D_body_entered(body):
+	if body.is_in_group("Player"):
+		body.health = 0
 	pass # Replace with function body.
