@@ -23,5 +23,6 @@ alignment = 1
 [node name="Button" parent="VBoxContainer/HBoxContainer" instance=ExtResource( 2 )]
 
 [node name="HUD" parent="." instance=ExtResource( 3 )]
+editor/display_folded = true
 
 [editable path="HUD"]

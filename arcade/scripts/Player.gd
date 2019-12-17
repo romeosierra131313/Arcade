@@ -4,17 +4,18 @@ extends KinematicBody2D
 
 onready var bullet = load("res://scenes/Bullet.tscn")
 onready var rocket = load("res://scenes/rocket.tscn")
-onready var laser = load("res://scenes/Laser.tscn")
+onready var laser = load("res://scenes/LaserP.tscn")
 
 var rocketTimer = 0.0
 var laserTimer = 0.0
-var speedX = 50
-var speedY = 250
+var speedX = 150
+var speedY = 450
 var time = 0.0
 var bulletAccuracy = 5 ##smaller is less acuurate
 var health = 5
 var fallingBack = false
 var spawning = false
+var exiting = false
 var velocity = Vector2(0,0)
 signal pDied
 signal lostLife
@@ -41,7 +42,7 @@ func setPos(e):
 
 func _ready():
 	spawning = true
-	setPos(Vector2(-100,300))
+	setPos(Vector2(100,300))
 	connect("pDied",get_parent().get_node("HUD"),"pDied")
 	connect("lostLife",get_parent().get_node("HUD"),"lostLife")
 	pass # Replace with function body.
@@ -51,14 +52,21 @@ func _process(delta):
 	time += delta
 	rocketTimer +=delta
 	laserTimer +=delta
+	position.x += Player.scrollSpeed
+	
+
 
 	if Input.is_action_pressed("ui_down"):
-		velocity.y = speedY
+		velocity.y += 50
+		if velocity.y > 450 :
+			velocity.y = 450
 	elif Input.is_action_pressed("ui_up"):
-		velocity.y = -speedY	
+		velocity.y -= 50
+		if velocity.y < -450 :
+			velocity.y = -450
 	else: velocity.y = 0
 	if Input.is_action_pressed("ui_left"):
-		velocity.x = -speedX
+		velocity.x = -500
 		Player.accel = 1
 	elif Input.is_action_pressed("ui_right"):
 		velocity.x = speedX	
@@ -70,15 +78,17 @@ func _process(delta):
 	
 	if Input.is_action_pressed("button_1"):
 		Engine.time_scale = 1
-		if time > 0.2:
+		if time > 0.1:
+			get_node("BulletSOUND").play(0.0)
 			var b  = bullet.instance()
 			b.setPos(Vector2(position.x + 11,position.y ))
-			b.setVelocity(Vector2(3,0))
+			b.setVelocity(Vector2(16,0))
 			b.gradiant =(randf() - randf())/bulletAccuracy
 			get_parent().add_child(b)
 			time = 0
 	if Input.is_action_pressed("button_2"):	
 		if rocketTimer > 1:
+			get_node("ROCKET").play(0.0)
 			var r  = rocket.instance()
 			r.setPos(Vector2(position.x + 11,position.y ))
 			r.setVelocity(Vector2(6,0))
@@ -94,8 +104,9 @@ func _process(delta):
 			get_parent().add_child(r1)
 			rocketTimer = 0	
 			
-	if Input.is_action_pressed("button_3"):	
-		if laserTimer > 1:		
+	if Input.is_action_just_pressed("button_3"):	
+		if laserTimer > 5:
+			get_node("LASER").play(0.0)		
 			var l  = laser.instance()
 			l.scale.y = 0.5
 			l.setPos(Vector2(11,0))
@@ -112,6 +123,8 @@ func _process(delta):
 	if spawning:
 		if position.x < 200:
 			spawn()
+	if exiting:
+		position.x += 10
 	pass
 	
 func takeHit(e):
@@ -119,6 +132,7 @@ func takeHit(e):
 	health -= e
 	if health < 0:
 		emit_signal("lostLife")
+		get_node("DIE").play(0.0)
 		Player.lives -= 1
 		spawning = true
 		set_collision_mask_bit(0,false)
@@ -131,7 +145,6 @@ func _physics_process(delta):
 	move_and_slide(velocity)
 	checkbounds()
 	
-	
 	pass
 	
 func checkbounds():
@@ -139,10 +152,10 @@ func checkbounds():
 		position.y = 64
 	if position.y > 536:
 		position.y = 536
-	if position.x < 32:
-		position.x = 32
-	if position.x > 960:
-		position.x = 960
+	if position.x < (get_parent().getCamera().x - 1024/2 -64 ):
+		position.x = get_parent().getCamera().x - 1024/2 -64
+	if position.x > (get_parent().getCamera().x + 1024/2 - 128):
+		position.x = get_parent().getCamera().x + 1024/2 - 128
 	pass
 	
 

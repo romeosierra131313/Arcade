@@ -1,6 +1,7 @@
 extends Sprite
 
-var timer  = 0.25
+export var timer  = 0.25
+export var oneShot = false
 var time = 0.0
 
 func _ready():
@@ -12,5 +13,6 @@ func _process(delta):
 			frame = 0 
 		else: frame += 1
 		time = 0
-	
+		if oneShot == true:
+			queue_free()
 	pass

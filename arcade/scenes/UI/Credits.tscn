@@ -17,28 +17,46 @@ texture = SubResource( 1 )
 [node name="StarsParticles" parent="." instance=ExtResource( 2 )]
 position = Vector2( 541.776, 289.235 )
 
-[node name="Label" type="Label" parent="."]
-margin_right = 40.0
-margin_bottom = 14.0
-text = "GAME BY :"
-align = 1
-
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
 margin_left = -20.6268
 margin_top = 603.123
 margin_right = 1039.37
 margin_bottom = 963.123
-text = "																																Credits Text
-																																Credits Text
-																																Credits Text
-																																Credits Text
-																																Credits Text
-																																Credits Text
-																																Credits Text
-																																Credits Text
-																																Credits Text
-																																Credits Text
-																																Credits Text
-																																Credits Text
-"
+bbcode_enabled = true
+bbcode_text = "																																		BY:
+																												RomeoSierra13 ,  iMonk  and PlasticCogLiquid
+																												
+																												Artist: iMonk 
+																												Using : GraphicsGale 
+																												Contact : kevinanderson32155@gmail.com   
+																												
+																												Programmer: Romeosierra13
+																												Using : Godot Engine
+																												Contact : romeosierra13@gmail.com 
+																												
+																												Music : PlasticCogLiquid
+																												Using : Unknown
+																												Contact :[url]https://mfraley6.wixsite.com/website[/url]
+																												
+																												Crackers provided by Abbyboy
+																												
+																												Beta tested by all the above listed  "
+text = "																																		BY:
+																												RomeoSierra13 ,  iMonk  and PlasticCogLiquid
+																												
+																												Artist: iMonk 
+																												Using : GraphicsGale 
+																												Contact : kevinanderson32155@gmail.com   
+																												
+																												Programmer: Romeosierra13
+																												Using : Godot Engine
+																												Contact : romeosierra13@gmail.com 
+																												
+																												Music : PlasticCogLiquid
+																												Using : Unknown
+																												Contact :https://mfraley6.wixsite.com/website
+																												
+																												Crackers provided by Abbyboy
+																												
+																												Beta tested by all the above listed  "
 script = ExtResource( 3 )

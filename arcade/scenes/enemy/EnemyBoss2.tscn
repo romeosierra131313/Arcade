@@ -1,17 +1,20 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scripts/EnemyBoss2.gd" type="Script" id=1]
-[ext_resource path="res://Textures/boss1.png" type="Texture" id=2]
-[ext_resource path="res://scenes/enemy/Boss2Turret.tscn" type="PackedScene" id=3]
-
+[ext_resource path="res://Textures/enemy/shmup_electric_spaceship_sheet.png" type="Texture" id=2]
+[ext_resource path="res://scripts/Sprite.gd" type="Script" id=3]
+[ext_resource path="res://scenes/enemy/Boss2Turret.tscn" type="PackedScene" id=4]
+[ext_resource path="res://sfx/Explosions/Explode_YM7.wav" type="AudioStream" id=5]
+[ext_resource path="res://sfx/Impacts/Damage122.wav" type="AudioStream" id=6]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 80.0
+radius = 60.8298
 
 [node name="Boss2" type="Area2D" groups=[
 "Enemy",
 ]]
 scale = Vector2( 1, 2 )
+z_index = 2
 collision_layer = 2
 script = ExtResource( 1 )
 timer = 0.05
@@ -22,21 +25,38 @@ breakTime = 1.5
 shape = SubResource( 1 )
 
 [node name="boss1" type="Sprite" parent="."]
-scale = Vector2( 0.6, 0.6 )
+scale = Vector2( 2.5, 2.5 )
 texture = ExtResource( 2 )
+flip_h = true
+hframes = 4
+script = ExtResource( 3 )
 
-[node name="Boss2Turret" parent="." instance=ExtResource( 3 )]
-position = Vector2( 0.9025, -75.81 )
+[node name="Boss2Turret" parent="." instance=ExtResource( 4 )]
+position = Vector2( -12.635, -59.1137 )
 scale = Vector2( 0.5, 0.25 )
+z_index = -1
 timer = 0.0
 burstTime = 5.0
 breakTime = 0.5
 
-[node name="Boss2Turret2" parent="." instance=ExtResource( 3 )]
-position = Vector2( -0.902, 76.713 )
+[node name="Boss2Turret2" parent="." instance=ExtResource( 4 )]
+position = Vector2( -11.732, 60.9192 )
 scale = Vector2( 0.5, 0.25 )
+z_index = -1
 timer = 0.0
 burstTime = 3.0
 breakTime = 0.5
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+[node name="1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+volume_db = -20.0
+
+[node name="damage" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 6 )
+volume_db = -20.0
 [connection signal="area_entered" from="." to="." method="_on_Boss2_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_Boss2_body_entered"]
+[connection signal="screen_entered" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

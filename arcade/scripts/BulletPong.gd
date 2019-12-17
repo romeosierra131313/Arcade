@@ -4,11 +4,13 @@ var gradiant = 0
 var velocity = Vector2(0,0)
 var damage = 1
 var health = 3
-var speedX = 3
-var speedY = 2
+var speedX = 4
+var speedY = 1
 var dirY = -1
-var rangeY = 50
+var rangeY = 20
 var movement = 0
+onready var explosion = load("res://scenes/bulletContact.tscn")
+onready var explosionAnim = load("res://scenes/Fx/Explosion.tscn")
 
 func setPos(e):
 	position = e
@@ -41,9 +43,7 @@ func _process(delta):
 	
 	position.x += velocity.x
 	position.y += velocity.y + gradiant
-	
-	if position.x < 0 :
-		queue_free()
+
 	
 	pass
 
@@ -67,4 +67,9 @@ func _on_Bullet_area_entered(area):
 
 func _on_Bullet_body_entered(body):
 	body.takeHit(damage)
+	body.add_child(explosion.instance())
+	var exAnim  = explosionAnim.instance()
+	exAnim.position = position
+	get_parent().add_child(exAnim)
+	queue_free()
 	pass # Replace with function body.

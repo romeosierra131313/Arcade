@@ -4,7 +4,8 @@ var gradiant = 0
 var velocity = Vector2(0,0)
 var damage = 1
 var distanceTravelled = 0
-
+export var rotDir = 1
+onready var EB = load("res://scenes/Fx/ExplosionBlue.tscn")
 
 func setPos(e):
 	position = e
@@ -25,13 +26,10 @@ func setEnemy():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	distanceTravelled += 1
-	rotate(delta)
+	rotate(delta * rotDir)
 
-	position.x += velocity.x/5
-	position.y += velocity.y /5
-	
-	if distanceTravelled > 300 :
-		queue_free()
+	position.x += velocity.x/5  + randi()%2
+	position.y += velocity.y /5 + randi()%2
 	
 	pass
 
@@ -41,9 +39,10 @@ func _on_VisibilityNotifier2D_screen_exited():
 	
 	pass # Replace with function body.
 
-
+func takeHit(e):
+	pass
 func _on_Bullet_area_entered(area):
-	if area.is_in_group("Enemy"):
+	if area.is_in_group("Player"):
 		area.takeHit(damage)
 		queue_free()
 	pass # Replace with function body.
@@ -51,4 +50,8 @@ func _on_Bullet_area_entered(area):
 
 func _on_Bullet_body_entered(body):
 	body.takeHit(damage)
+	var eb = EB.instance()
+	eb.oneShot = true
+	body.add_child(eb)
+	queue_free()
 	pass # Replace with function body.

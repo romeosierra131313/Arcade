@@ -10,66 +10,81 @@ var burstTimer = 0.0 ### length of bursts
 var breakTimer = 0.0 ### time between bursts
 export var burstTime = 0.0 ### length of bursts
 export var breakTime = 0.0 ### time between bursts
-var health = 5
-var speedX = 3
+export var health = 5
+export var speedX = 2
+var vis = false
 signal esdied
+signal eDied
 # Called when the node enters the scene tree for the first time.
 
 func _ready():
+	speedX += Player.difficulty
 	connect("esdied",get_parent().get_node("HUD"),"esenemyDied")
-	position = Vector2(1080,randi()%536 + 64)
+	connect("eDied",get_parent(),"eDied")
 	pass
 func setPos(e):
 	position.y = e
 	pass
 
 func _process(delta):
-	time += delta
-	burstTimer += delta
-	breakTimer += delta
-
+	if vis == true:
+		time += delta
+		burstTimer += delta
+		breakTimer += delta
 	
-	
-	
-	if breakTimer >breakTime:	
 		
-		if breakTimer > breakTimer+burstTimer:
-			burstTimer = 0.0
-			breakTimer = 0
-		if burstTimer < burstTime:
-
-			if time > timer:
-					
-				var b  = bullet.instance()
-				b.setPos(position)
-				b.setVelocity(Vector2(-3,0))
-				b.setEnemy()
-				var g = (Player.location.y - position.y)/ (Player.location.x - position.x)
-				b.gradiant =randi()%4  * g *-2
-				get_parent().add_child(b)
-				time = 0
-
+		
+		
+		if breakTimer >breakTime:	
 			
-	position = Vector2(position.x - speedX,position.y)
-	if position.x < 0:
-		queue_free()
+			if breakTimer > breakTimer+burstTimer:
+				burstTimer = 0.0
+				breakTimer = 0
+			if burstTimer < burstTime:
+	
+				if time > timer:
+						
+					var b  = bullet.instance()
+					b.setPos(position)
+					b.setEnemy()
+					b.setVelocity(Vector2(-5,0))
+					var g = (Player.location.y - position.y)/ (Player.location.x - position.x)
+					b.gradiant =randi()%4  * g *-2
+					get_parent().add_child(b)
+					time = 0
+	
+				
+		position = Vector2(position.x - speedX,position.y)
+
 	pass
 func takeHit(e):
-	print("enemy took hit")
+	get_node("damage").play(0.0)
 	health -= e
 	if health <= 0:
+		get_node("2").play(0.0)
+		emit_signal("eDied")
 		emit_signal("esdied")
 		queue_free()
 	pass
 
-func _on_Enemy_area_entered(area):
-	print("hit")
-	#takeHit(area.damage)
-	pass # Replace with function body.
-
-
 
 func _on_EnemyStraight_body_entered(body):
 	if body.is_in_group("Player"):
-		body.health = 0
+		body.takeHit(20)
+	pass # Replace with function body.
+
+
+func _on_VisibilityNotifier2D_screen_entered():
+	print("screen entered")
+	vis = true
+	pass # Replace with function body.
+
+
+func _on_VisibilityNotifier2D_screen_exited():
+	print("screen exited")
+	queue_free()
+	pass # Replace with function body.
+
+
+func _on_EnemyStraight_area_entered(area):
 	pass # Replace with function body.

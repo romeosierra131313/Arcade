@@ -1,12 +1,561 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://scripts/location2.gd" type="Script" id=1]
-[ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scripts/location1.gd" type="Script" id=1]
+[ext_resource path="res://scenes/ScrollCamera.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/HUD.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/enemy/EnemyBoss2.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/enemy/EnemyGunRotating.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/enemy/EnemyAngle.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/enemy/EnemyPong.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/enemy/Enemy.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/enemy/EnemyStraight.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/enemy/laserRotate.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/enemy/EnemyStraightPongBullets.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/enemy/EnemyCurve.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/Decor/planet1.tscn" type="PackedScene" id=13]
+[ext_resource path="res://scenes/Decor/planet4.tscn" type="PackedScene" id=14]
 
-[node name="Location2" type="Node2D"]
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0.934783, 0.956522, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.368724, 0.368724, 0.368724, 1, 0.497283, 0.497283, 0.497283, 1, 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[node name="Location1" type="Node2D"]
 script = ExtResource( 1 )
-lrTimer = 11.0
-espbTimer = 4.0
-eneTimer = 2.0
 
-[node name="HUD" parent="." instance=ExtResource( 2 )]
+[node name="Camera2D" parent="." instance=ExtResource( 2 )]
+position = Vector2( 521.41, -7.80856 )
+
+[node name="HUD" parent="." instance=ExtResource( 3 )]
+
+[node name="Boss2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 19750, 280.26 )
+scale = Vector2( 1, 1 )
+
+[node name="EnemyGunRotating" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1206.27, 284.26 )
+
+[node name="EnemyGunRotating8" parent="." instance=ExtResource( 5 )]
+position = Vector2( 13988, 271.249 )
+
+[node name="EnemyGunRotating2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 4150.43, 290.113 )
+burstTime = 3.0
+rotDir = -1
+
+[node name="EnemyGunRotating6" parent="." instance=ExtResource( 5 )]
+position = Vector2( 15762.9, 283.406 )
+burstTime = 3.0
+rotDir = -1
+
+[node name="EnemyGunRotating9" parent="." instance=ExtResource( 5 )]
+position = Vector2( 16850.6, 268.239 )
+burstTime = 3.0
+rotDir = -1
+
+[node name="EnemyGunRotating10" parent="." instance=ExtResource( 5 )]
+position = Vector2( 19834.8, 522.883 )
+burstTime = 3.0
+rotDir = -1
+
+[node name="EnemyGunRotating11" parent="." instance=ExtResource( 5 )]
+position = Vector2( 19812.9, 56.2431 )
+burstTime = 3.0
+rotDir = -1
+
+[node name="EnemyGunRotating12" parent="." instance=ExtResource( 5 )]
+position = Vector2( 18196.9, 282.305 )
+burstTime = 3.0
+rotDir = -1
+
+[node name="EnemyGunRotating3" parent="." instance=ExtResource( 5 )]
+position = Vector2( 3222.48, 522.531 )
+burstTime = 3.0
+
+[node name="EnemyGunRotating7" parent="." instance=ExtResource( 5 )]
+position = Vector2( 16004.3, 509.519 )
+burstTime = 3.0
+
+[node name="Enemy" parent="." instance=ExtResource( 6 )]
+position = Vector2( 1551.54, 12.492 )
+speedX = 3
+speedY = 3
+dirY = 1
+
+[node name="Enemy31" parent="." instance=ExtResource( 6 )]
+position = Vector2( 14333.3, -0.519139 )
+timer = 0.1
+speedX = 3
+speedY = 3
+dirY = 1
+
+[node name="Enemy2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 1606.14, 592.503 )
+speedX = 3
+speedY = 3
+
+[node name="Enemy35" parent="." instance=ExtResource( 6 )]
+position = Vector2( 14387.9, 579.492 )
+timer = 0.1
+speedX = 3
+speedY = 3
+
+[node name="Enemy3" parent="." instance=ExtResource( 7 )]
+position = Vector2( 2823.6, 234.727 )
+speedX = 1
+speedY = 1
+
+[node name="Enemy32" parent="." instance=ExtResource( 7 )]
+position = Vector2( 15605.4, 221.716 )
+
+[node name="Enemy23" parent="." instance=ExtResource( 7 )]
+position = Vector2( 2633.71, 415.364 )
+speedX = 1
+speedY = 1
+
+[node name="Enemy37" parent="." instance=ExtResource( 7 )]
+position = Vector2( 15412.2, 395.717 )
+
+[node name="Enemy4" parent="." instance=ExtResource( 7 )]
+position = Vector2( 2827.63, 390.726 )
+speedX = 1
+speedY = 1
+
+[node name="Enemy36" parent="." instance=ExtResource( 7 )]
+position = Vector2( 15609.4, 377.715 )
+
+[node name="Enemy22" parent="." instance=ExtResource( 7 )]
+position = Vector2( 2634.42, 564.728 )
+speedX = 1
+speedY = 1
+
+[node name="Enemy30" parent="." instance=ExtResource( 7 )]
+position = Vector2( 15416.2, 551.717 )
+
+[node name="Enemy5" parent="." instance=ExtResource( 8 )]
+position = Vector2( 3106.36, 290.694 )
+
+[node name="Enemy33" parent="." instance=ExtResource( 8 )]
+position = Vector2( 15888.1, 277.683 )
+
+[node name="EnemyStraight" parent="." instance=ExtResource( 9 )]
+position = Vector2( 1759.53, 121.664 )
+timer = 0.2
+breakTime = 0.5
+health = 3
+speedX = 1
+
+[node name="EnemyStraight17" parent="." instance=ExtResource( 9 )]
+position = Vector2( 14541.3, 108.653 )
+timer = 0.2
+burstTime = 1.0
+breakTime = 0.5
+health = 3
+speedX = 1
+
+[node name="EnemyStraight10" parent="." instance=ExtResource( 9 )]
+position = Vector2( 1893.99, 187.197 )
+timer = 0.2
+breakTime = 0.5
+health = 3
+speedX = 1
+
+[node name="EnemyStraight21" parent="." instance=ExtResource( 9 )]
+position = Vector2( 14675.8, 174.186 )
+timer = 0.2
+burstTime = 1.0
+breakTime = 0.5
+health = 3
+speedX = 1
+
+[node name="EnemyStraight12" parent="." instance=ExtResource( 9 )]
+position = Vector2( 2035.22, 246.593 )
+timer = 0.2
+breakTime = 0.5
+health = 3
+speedX = 1
+
+[node name="EnemyStraight22" parent="." instance=ExtResource( 9 )]
+position = Vector2( 14817, 233.582 )
+timer = 0.2
+burstTime = 1.0
+breakTime = 0.5
+health = 3
+speedX = 1
+
+[node name="EnemyStraight2" parent="." instance=ExtResource( 9 )]
+position = Vector2( 1825.03, 121.82 )
+timer = 0.2
+breakTime = 0.5
+health = 3
+speedX = 1
+
+[node name="EnemyStraight26" parent="." instance=ExtResource( 9 )]
+position = Vector2( 14606.8, 108.809 )
+timer = 0.2
+burstTime = 1.0
+breakTime = 0.5
+health = 3
+speedX = 1
+
+[node name="EnemyStraight9" parent="." instance=ExtResource( 9 )]
+position = Vector2( 1959.48, 185.735 )
+timer = 0.2
+breakTime = 0.5
+health = 3
+speedX = 1
+
+[node name="EnemyStraight20" parent="." instance=ExtResource( 9 )]
+position = Vector2( 14741.3, 172.724 )
+timer = 0.2
+burstTime = 1.0
+breakTime = 0.5
+health = 3
+speedX = 1
+
+[node name="EnemyStraight14" parent="." instance=ExtResource( 9 )]
+position = Vector2( 2100.72, 246.748 )
+timer = 0.2
+breakTime = 0.5
+health = 3
+speedX = 1
+
+[node name="EnemyStraight27" parent="." instance=ExtResource( 9 )]
+position = Vector2( 14882.5, 233.737 )
+timer = 0.2
+burstTime = 1.0
+breakTime = 0.5
+health = 3
+speedX = 1
+
+[node name="EnemyStraight3" parent="." instance=ExtResource( 9 )]
+position = Vector2( 1892.76, 122.307 )
+timer = 0.2
+breakTime = 0.5
+health = 3
+speedX = 1
+
+[node name="EnemyStraight16" parent="." instance=ExtResource( 9 )]
+position = Vector2( 14674.5, 109.296 )
+timer = 0.2
+burstTime = 1.0
+breakTime = 0.5
+health = 3
+speedX = 1
+
+[node name="EnemyStraight11" parent="." instance=ExtResource( 9 )]
+position = Vector2( 2027.22, 186.222 )
+timer = 0.2
+breakTime = 0.5
+health = 3
+speedX = 1
+
+[node name="EnemyStraight18" parent="." instance=ExtResource( 9 )]
+position = Vector2( 14809, 173.211 )
+timer = 0.2
+burstTime = 1.0
+breakTime = 0.5
+health = 3
+speedX = 1
+
+[node name="EnemyStraight13" parent="." instance=ExtResource( 9 )]
+position = Vector2( 2168.45, 247.235 )
+timer = 0.2
+breakTime = 0.5
+health = 3
+speedX = 1
+
+[node name="EnemyStraight24" parent="." instance=ExtResource( 9 )]
+position = Vector2( 14950.2, 234.224 )
+timer = 0.2
+burstTime = 1.0
+breakTime = 0.5
+health = 3
+speedX = 1
+
+[node name="EnemyStraight4" parent="." instance=ExtResource( 9 )]
+position = Vector2( 2418.48, 567.239 )
+timer = 0.2
+burstTime = 1.0
+health = 3
+speedX = 1
+
+[node name="EnemyStraight25" parent="." instance=ExtResource( 9 )]
+position = Vector2( 15200.3, 554.228 )
+timer = 0.2
+burstTime = 1.0
+breakTime = 0.5
+health = 3
+speedX = 1
+
+[node name="EnemyStraight5" parent="." instance=ExtResource( 9 )]
+position = Vector2( 2415.36, 504.297 )
+timer = 0.2
+burstTime = 1.0
+health = 3
+speedX = 1
+
+[node name="EnemyStraight23" parent="." instance=ExtResource( 9 )]
+position = Vector2( 15197.1, 491.286 )
+timer = 0.2
+burstTime = 1.0
+breakTime = 0.5
+health = 3
+speedX = 1
+
+[node name="EnemyStraight15" parent="." instance=ExtResource( 9 )]
+position = Vector2( 2413.1, 445.543 )
+timer = 0.2
+burstTime = 1.0
+health = 3
+speedX = 1
+
+[node name="EnemyStraight19" parent="." instance=ExtResource( 9 )]
+position = Vector2( 15194.9, 432.532 )
+timer = 0.2
+burstTime = 1.0
+breakTime = 0.5
+health = 3
+speedX = 1
+
+[node name="LaserRotate" parent="." instance=ExtResource( 10 )]
+position = Vector2( 3509.47, 157.803 )
+
+[node name="LaserRotate7" parent="." instance=ExtResource( 10 )]
+position = Vector2( 16185.7, 5.4499 )
+
+[node name="LaserRotate2" parent="." instance=ExtResource( 10 )]
+position = Vector2( 4558.83, 18.0617 )
+
+[node name="LaserRotate6" parent="." instance=ExtResource( 10 )]
+position = Vector2( 17340.6, 5.05056 )
+
+[node name="LaserRotate3" parent="." instance=ExtResource( 10 )]
+position = Vector2( 6361.31, 589.559 )
+
+[node name="Enemy6" parent="." instance=ExtResource( 7 )]
+position = Vector2( 4480, 480 )
+speedX = 1
+speedY = 1
+
+[node name="Enemy34" parent="." instance=ExtResource( 7 )]
+position = Vector2( 17718.4, 494.076 )
+
+[node name="ESPB" parent="." instance=ExtResource( 11 )]
+position = Vector2( 5888.55, 290.932 )
+burstTime = 2.0
+breakTime = 0.5
+
+[node name="ESPB14" parent="." instance=ExtResource( 11 )]
+position = Vector2( 18357.4, 470.403 )
+burstTime = 2.0
+breakTime = 0.5
+
+[node name="ESPB7" parent="." instance=ExtResource( 11 )]
+position = Vector2( 5459.07, 538.737 )
+burstTime = 2.0
+breakTime = 0.5
+
+[node name="ESPB10" parent="." instance=ExtResource( 11 )]
+position = Vector2( 18674.5, 70.7671 )
+burstTime = 2.0
+breakTime = 0.5
+
+[node name="ESPB2" parent="." instance=ExtResource( 11 )]
+position = Vector2( 5225.6, 360.899 )
+burstTime = 2.0
+breakTime = 0.5
+
+[node name="ESPB11" parent="." instance=ExtResource( 11 )]
+position = Vector2( 18417.7, 429.547 )
+burstTime = 2.0
+breakTime = 0.5
+
+[node name="ESPB9" parent="." instance=ExtResource( 11 )]
+position = Vector2( 5682.71, 317.064 )
+burstTime = 2.0
+breakTime = 0.5
+
+[node name="ESPB13" parent="." instance=ExtResource( 11 )]
+position = Vector2( 18734.8, 29.9114 )
+burstTime = 2.0
+breakTime = 0.5
+
+[node name="ESPB3" parent="." instance=ExtResource( 11 )]
+position = Vector2( 5656.96, 506.03 )
+burstTime = 2.0
+breakTime = 0.5
+
+[node name="ESPB12" parent="." instance=ExtResource( 11 )]
+position = Vector2( 18294.9, 510.517 )
+burstTime = 2.0
+breakTime = 0.5
+
+[node name="ESPB8" parent="." instance=ExtResource( 11 )]
+position = Vector2( 5491.58, 386.369 )
+burstTime = 2.0
+breakTime = 0.5
+
+[node name="ESPB15" parent="." instance=ExtResource( 11 )]
+position = Vector2( 18613.7, 110.881 )
+burstTime = 2.0
+breakTime = 0.5
+
+[node name="Enemy7" parent="." instance=ExtResource( 8 )]
+position = Vector2( 7201.08, 194.869 )
+
+[node name="Enemy27" parent="." instance=ExtResource( 8 )]
+position = Vector2( 7060.32, 259.587 )
+
+[node name="Enemy8" parent="." instance=ExtResource( 8 )]
+position = Vector2( 7351.08, 264.869 )
+
+[node name="Enemy28" parent="." instance=ExtResource( 8 )]
+position = Vector2( 7210.32, 329.587 )
+
+[node name="Enemy9" parent="." instance=ExtResource( 8 )]
+position = Vector2( 7821.08, 84.8687 )
+
+[node name="Enemy26" parent="." instance=ExtResource( 8 )]
+position = Vector2( 7680.32, 149.587 )
+
+[node name="Enemy10" parent="." instance=ExtResource( 6 )]
+position = Vector2( 7071.08, 494.869 )
+timer = 0.1
+speedX = 2
+speedY = 2
+
+[node name="Enemy24" parent="." instance=ExtResource( 6 )]
+position = Vector2( 7006.36, 498.105 )
+timer = 0.1
+speedX = 2
+speedY = 2
+
+[node name="Enemy25" parent="." instance=ExtResource( 6 )]
+position = Vector2( 6948.12, 496.487 )
+timer = 0.1
+speedX = 2
+speedY = 2
+
+[node name="Enemy11" parent="." instance=ExtResource( 6 )]
+position = Vector2( 7831.08, 494.869 )
+timer = 0.1
+speedX = 2
+speedY = 2
+
+[node name="Enemy12" parent="." instance=ExtResource( 6 )]
+position = Vector2( 8286.63, 505.61 )
+
+[node name="Enemy13" parent="." instance=ExtResource( 12 )]
+position = Vector2( 9886.9, 266.417 )
+
+[node name="EnemyStraight6" parent="." instance=ExtResource( 9 )]
+position = Vector2( 10470.2, 472.909 )
+health = 4
+
+[node name="EnemyStraight7" parent="." instance=ExtResource( 9 )]
+position = Vector2( 10455.9, 178.657 )
+health = 4
+
+[node name="EnemyStraight8" parent="." instance=ExtResource( 9 )]
+position = Vector2( 10652.1, 338.689 )
+health = 4
+
+[node name="ESPB4" parent="." instance=ExtResource( 11 )]
+position = Vector2( 10956.7, 312.878 )
+health = 4
+
+[node name="ESPB5" parent="." instance=ExtResource( 11 )]
+position = Vector2( 11111.5, 199.307 )
+health = 4
+
+[node name="ESPB6" parent="." instance=ExtResource( 11 )]
+position = Vector2( 11312.9, 49.5995 )
+health = 4
+
+[node name="LaserRotate4" parent="." instance=ExtResource( 10 )]
+position = Vector2( 11968.5, 452.26 )
+
+[node name="LaserRotate5" parent="." instance=ExtResource( 10 )]
+position = Vector2( 12629.2, 44.4371 )
+
+[node name="EnemyGunRotating4" parent="." instance=ExtResource( 5 )]
+position = Vector2( 12826.6, 282.013 )
+rotDir = -1
+
+[node name="EnemyGunRotating5" parent="." instance=ExtResource( 5 )]
+position = Vector2( 14686.6, 281.904 )
+
+[node name="Enemy14" parent="." instance=ExtResource( 6 )]
+position = Vector2( 13615.3, 524.533 )
+
+[node name="Enemy15" parent="." instance=ExtResource( 8 )]
+position = Vector2( 13047.4, 379.988 )
+
+[node name="Enemy16" parent="." instance=ExtResource( 8 )]
+position = Vector2( 13026.7, 152.846 )
+
+[node name="Enemy17" parent="." instance=ExtResource( 8 )]
+position = Vector2( 13284.9, 240.605 )
+
+[node name="Enemy18" parent="." instance=ExtResource( 6 )]
+position = Vector2( 9206.18, 20 )
+timer = 0.2
+speedX = 2
+speedY = 2
+dirY = 1
+
+[node name="Enemy29" parent="." instance=ExtResource( 6 )]
+position = Vector2( 9285.46, 18.382 )
+timer = 0.2
+speedX = 2
+speedY = 2
+dirY = 1
+
+[node name="Enemy19" parent="." instance=ExtResource( 6 )]
+position = Vector2( 9345.79, 20 )
+timer = 0.2
+speedX = 2
+speedY = 2
+dirY = 1
+
+[node name="Enemy20" parent="." instance=ExtResource( 6 )]
+position = Vector2( 9421.08, 17.0725 )
+timer = 0.2
+speedX = 2
+speedY = 2
+dirY = 1
+
+[node name="Enemy21" parent="." instance=ExtResource( 6 )]
+position = Vector2( 9522.09, 20.6168 )
+timer = 0.2
+speedX = 2
+speedY = 2
+dirY = 1
+
+[node name="LaserRotate8" parent="." instance=ExtResource( 10 )]
+position = Vector2( 1950.82, 421.817 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_base_scale = Vector2( 0.1, 1 )
+scroll_limit_end = Vector2( 20000, 0 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxBackground"]
+position = Vector2( 9971.92, 300 )
+scale = Vector2( 9.76127, 600 )
+texture = SubResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="planet1" parent="ParallaxBackground" instance=ExtResource( 13 )]
+position = Vector2( 843.215, 834.518 )
+scale = Vector2( 5, 5 )
+
+[node name="planet4" parent="ParallaxBackground/planet1" instance=ExtResource( 14 )]
+position = Vector2( -117.821, -167.23 )
+scale = Vector2( 0.3, 0.3 )
+
+[editable path="LaserRotate8"]

@@ -22,13 +22,16 @@ func _ready():
 func _unhandled_key_input(event):
 	if event.is_action("coin"):
 		Player.credits += 1
+		get_node("COIN").play(0.0)
 		setCredit()
 		get_node("GameOver").coinAdded()
 		get_node("GameOver").setText("PRESS START")
 		emit_signal("coin")
 	if event.is_action("start"):	
 		if Player.credits > 0:
-			get_parent().spawnPlayer() 
+			if get_parent().scrollSpeed != null:
+				Player.scrollSpeed = get_parent().scrollSpeed
+				get_parent().spawnPlayer() 
 		
 	pass
 func enemyDied():
@@ -83,7 +86,7 @@ func boss2Died():
 	
 	pass
 func pDied():
-	Player.credits -= 1
+	Player.scrollSpeed = 0
 	setCredit()
 	if Player.credits == -1:
 		Player.credits = 0
@@ -120,5 +123,6 @@ func _process(delta):
 
 		if bossDied == true:
 			if scoreCounter - tempScore == 500:
+				get_parent().get_node("Player").queue_free()
 				Global.goto_scene("res://scenes/location2.tscn")
 	pass

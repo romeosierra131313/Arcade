@@ -1,5 +1,6 @@
 extends Control
 
+var scrollSpeed = 3
 
 func _ready():
 	get_node("HUD/HIGHSCORE").hide()
@@ -19,7 +20,7 @@ func _process(delta):
 		get_node("HUD/sky_rocket").show()
 		get_node("HUD/sky_rocket2").show()
 		get_node("HUD/sky_rocket3").show()
-		Global.goto_scene("res://scenes/location1.tscn")
+		Global.goto_scene("res://scenes/location2.tscn")
 		queue_free()
 
 	pass

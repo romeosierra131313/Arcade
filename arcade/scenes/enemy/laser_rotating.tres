@@ -1,4 +1,4 @@
 [gd_resource type="LineShape2D" format=2]
 
 [resource]
-normal = Vector2( 3, 5 )
+normal = Vector2( 0, 0 )

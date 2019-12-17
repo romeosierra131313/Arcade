@@ -7,6 +7,7 @@ var difficulty = 1
 var accel = 0 
 var health = 5
 var lives = 3
+var scrollSpeed = 2
 func _ready():
 	pass # Replace with function body.
 

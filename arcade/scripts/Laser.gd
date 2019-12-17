@@ -26,8 +26,8 @@ func takeHit(e):
 	
 	pass
 func _on_Laser_body_entered(body):
-	body.takeHit(damage)
-	queue_free()
+	#body.takeHit(damage)
+	#queue_free()
 	pass # Replace with function body.
 
 

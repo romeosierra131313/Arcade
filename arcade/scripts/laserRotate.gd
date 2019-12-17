@@ -1,17 +1,20 @@
 extends Node2D
 
-var damage = 1
-
+var damage = 15
+export var rotDir  =  1
 func _ready():
-	var w = randf()
-	if w > 0.5:
-		get_node("LaserR").rotateDir = 1
-	else:
-		get_node("LaserR").rotateDir = -1	
+
 	pass # Replace with function body.
-func takeHit(e):
+
+func _on_LaserR_body_entered(body):
+	body.takeHit(damage)
+	pass # Replace with function body.
+
+
+func _on_LaserR2_body_entered(body):
+	body.takeHit(damage)
+	pass # Replace with function body.
+func _process(delta):
+	rotate(delta/5 *rotDir)
 	
 	pass
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass

@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/Camera2D.gd" type="Script" id=1]
+[ext_resource path="res://scenes/StarsParticles.tscn" type="PackedScene" id=2]
+
+[sub_resource type="ParticlesMaterial" id=1]
+emission_shape = 2
+emission_box_extents = Vector3( 1024, 600, 1 )
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( -1, 0, 0 )
+angular_velocity = 1.58207e-42
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 5.0
+scale_random = 1.0
+
+[node name="Camera2D" type="Camera2D"]
+position = Vector2( 514.474, 0 )
+offset = Vector2( 0, 300 )
+current = true
+script = ExtResource( 1 )
+
+[node name="StarsParticles" parent="." instance=ExtResource( 2 )]
+position = Vector2( 8.23401, 1.21091 )
+z_index = -2
+process_material = SubResource( 1 )
